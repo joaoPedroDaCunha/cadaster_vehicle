@@ -10,25 +10,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Aet {
     
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) String id;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "plate_id")
-    private @Column(name = "mainPlate",length = 7) String mainPlate;
+    private Vehicle mainPlate;
     private @Column Date maturity;
-    @OneToOne(mappedBy = "Aet")
-    @JoinColumn(name = "plate_id")
-    private Set<String> verser;
+    @OneToMany(mappedBy = "plate")
+    private Set<Vehicle> verser;
 
     public Aet(){
         
     }
     
-    public Aet(String mainPlate, Date maturity, Set<String> verser) {
+    public Aet(Vehicle mainPlate, Date maturity, Set<String> verser) {
         this.mainPlate = mainPlate;
         this.maturity = maturity;
         this.verser = new HashSet<>();
@@ -42,11 +42,11 @@ public class Aet {
         this.id = id;
     }
 
-    public String getMainPlate() {
+    public Vehicle getMainPlate() {
         return mainPlate;
     }
 
-    public void setMainPlate(String mainPlate) {
+    public void setMainPlate(Vehicle mainPlate) {
         this.mainPlate = mainPlate;
     }
 
@@ -58,12 +58,12 @@ public class Aet {
         this.maturity = maturity;
     }
 
-    public void addVehicleInVerser(String plate){
+    public void addVehicleInVerser(Vehicle plate){
         verser.add(plate);
     }
 
     public void removeVehicleInVerser(String plate){
-        verser.removeIf(pla -> pla.equalsIgnoreCase(plate));
+        verser.removeIf(pla -> pla.getPlate().equalsIgnoreCase(plate));
     }
     
 

@@ -14,9 +14,9 @@ public class StartApp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         
-        vehicleRepository.save(null);
+        //vehicleRepository.save(null);
 
-        aetRepository.save(null);
+        //aetRepository.save(null);
     }
     
 }
