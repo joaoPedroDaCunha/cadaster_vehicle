@@ -16,7 +16,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Aet {
     
-    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) String id;
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
     @ManyToOne
     @JoinColumn(name = "plate_id")
     private Vehicle mainPlate;
@@ -34,11 +34,11 @@ public class Aet {
         this.verser = new HashSet<>();
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
