@@ -6,6 +6,8 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -13,7 +15,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Aet {
     
-    private @Id String id;
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) String id;
     @OneToOne
     @JoinColumn(name = "plate_id")
     private @Column(name = "mainPlate",length = 7) String mainPlate;
@@ -21,9 +23,12 @@ public class Aet {
     @OneToOne(mappedBy = "Aet")
     @JoinColumn(name = "plate_id")
     private Set<String> verser;
+
+    public Aet(){
+        
+    }
     
-    public Aet(String id, String mainPlate, Date maturity, Set<String> verser) {
-        this.id = id;
+    public Aet(String mainPlate, Date maturity, Set<String> verser) {
         this.mainPlate = mainPlate;
         this.maturity = maturity;
         this.verser = new HashSet<>();
