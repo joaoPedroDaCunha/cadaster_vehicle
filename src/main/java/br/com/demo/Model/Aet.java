@@ -18,7 +18,7 @@ public class Aet {
     @JoinColumn(name = "plate_id")
     private @Column(name = "mainPlate",length = 7) String mainPlate;
     private @Column Date maturity;
-    @OneToOne
+    @OneToOne(mappedBy = "Aet")
     @JoinColumn(name = "plate_id")
     private Set<String> verser;
     
