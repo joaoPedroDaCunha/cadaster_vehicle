@@ -3,18 +3,22 @@ package br.com.demo.Model;
 import java.util.Date;
 
 import br.com.demo.Enum.Situation;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Vehicle implements Comparable<Vehicle>{
 
-    private String plate;
-    private String ranavam;
-    private String chasis;
-    private String mark;
-    private String model;
-    private String version;
-    private String type;
-    private Date dueDate;
-    private Situation situation;
+    private @Id @Column(name = "plate_id",length = 7,nullable = false) String plate;
+    private @Column(nullable = false,length = 20) String ranavam;
+    private @Column(length = 20,nullable = false) String chasis;
+    private @Column(length = 20,nullable = false) String mark;
+    private @Column(length = 20,nullable = false) String model;
+    private @Column(length = 20,nullable = false) String version;
+    private @Column(length = 20,nullable = false) String type;
+    private @Column Date dueDate;
+    private @Column(length = 20,nullable = false) Situation situation;
     
     public Vehicle(String plate, String ranavam, String chasis, String mark, String model, String version, String type,
             Date dueDate, Situation situation) {
