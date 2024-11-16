@@ -13,6 +13,7 @@ public class Vehicle implements Comparable<Vehicle>{
     private @Id @Column(name = "plate_id",length = 7,nullable = false) String plate;
     private @Column(nullable = false,length = 20) String ranavam;
     private @Column(length = 20,nullable = false) String chasis;
+    private @Column(length = 4,nullable = false) String exercice;
     private @Column(length = 20,nullable = false) String mark;
     private @Column(length = 20,nullable = false) String model;
     private @Column(length = 20,nullable = false) String version;
@@ -24,11 +25,12 @@ public class Vehicle implements Comparable<Vehicle>{
         
     }
     
-    public Vehicle(String plate, String ranavam, String chasis, String mark, String model, String version, String type,
+    public Vehicle(String plate, String ranavam, String chasis,String exercice ,String mark, String model, String version, String type,
             Date dueDate, Situation situation) {
         this.plate = plate;
         this.ranavam = ranavam;
         this.chasis = chasis;
+        this.exercice = exercice;
         this.mark = mark;
         this.model = model;
         this.version = version;
@@ -47,6 +49,14 @@ public class Vehicle implements Comparable<Vehicle>{
 
     public String getChasis() {
         return chasis;
+    }
+
+    public String getExercice(){
+        return exercice;
+    }
+
+    public void setExercice(String exercice){
+        this.exercice = exercice;
     }
 
     public String getType() {
