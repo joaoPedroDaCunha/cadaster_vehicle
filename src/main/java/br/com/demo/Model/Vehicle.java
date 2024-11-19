@@ -2,7 +2,6 @@ package br.com.demo.Model;
 
 import java.util.Date;
 
-import br.com.demo.Enum.Situation;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,14 +18,14 @@ public class Vehicle implements Comparable<Vehicle>{
     private @Column(length = 20,nullable = false) String version;
     private @Column(length = 20,nullable = false) String type;
     private @Column Date dueDate;
-    private @Column(length = 20,nullable = false) Situation situation;
+    private @Column(length = 20,nullable = false) String situation;
 
     public Vehicle(){
         
     }
     
     public Vehicle(String plate, String ranavam, String chasis,String exercice ,String mark, String model, String version, String type,
-            Date dueDate, Situation situation) {
+            Date dueDate, String situation) {
         this.plate = plate;
         this.ranavam = ranavam;
         this.chasis = chasis;
@@ -95,11 +94,11 @@ public class Vehicle implements Comparable<Vehicle>{
         this.dueDate = dueDate;
     }
 
-    public Situation getSituation() {
+    public String getSituation() {
         return situation;
     }
 
-    public void setSituation(Situation situation) {
+    public void setSituation(String situation) {
         this.situation = situation;
     }
 
