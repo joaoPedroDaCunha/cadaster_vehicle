@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,12 +17,14 @@ import br.com.demo.Model.Vehicle;
 import br.com.demo.Repository.VehicleRepository;
 
 @RestController
+@CrossOrigin("*")
 public class VehicleController {
 
     private @Autowired VehicleRepository vehicleRepository;
+
     @GetMapping("/getvehicles")
     public List<Vehicle> getVehicles(){
-        return vehicleRepository.findAll();    
+        return (List<Vehicle>) vehicleRepository.findAll();
     }
     @PostMapping("/postVehicle")
     public void postVehicle(@RequestBody Vehicle vehicle){
@@ -35,7 +38,6 @@ public class VehicleController {
 
     @PutMapping("/vehicle/atualizar")
     public void putVehicle(@RequestBody Vehicle vehicle){
-        vehicleRepository.deleteById(vehicle.getPlate());
         vehicleRepository.save(vehicle);
     }
 
