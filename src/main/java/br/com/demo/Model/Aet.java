@@ -1,8 +1,6 @@
 package br.com.demo.Model;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,28 +8,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Aet {
     
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "plate_id")
     private Vehicle mainPlate;
     private @Column Date maturity;
-    @OneToMany(mappedBy = "plate")
-    private Set<Vehicle> verser;
 
     public Aet(){
         
     }
     
-    public Aet(Vehicle mainPlate, Date maturity, Set<String> verser) {
+    public Aet(Vehicle mainPlate, Date maturity) {
         this.mainPlate = mainPlate;
         this.maturity = maturity;
-        this.verser = new HashSet<>();
+
     }
 
     public Integer getId() {
@@ -57,14 +52,5 @@ public class Aet {
     public void setMaturity(Date maturity) {
         this.maturity = maturity;
     }
-
-    public void addVehicleInVerser(Vehicle plate){
-        verser.add(plate);
-    }
-
-    public void removeVehicleInVerser(String plate){
-        verser.removeIf(pla -> pla.getPlate().equalsIgnoreCase(plate));
-    }
-    
 
 }

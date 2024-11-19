@@ -20,9 +20,6 @@ public class Vehicle implements Comparable<Vehicle>{
     private @Column Date dueDate;
     private @Column(length = 20,nullable = false) String situation;
 
-    public Vehicle(){
-        
-    }
     
     public Vehicle(String plate, String ranavam, String chasis,String exercice ,String mark, String model, String version, String type,
             Date dueDate, String situation) {
