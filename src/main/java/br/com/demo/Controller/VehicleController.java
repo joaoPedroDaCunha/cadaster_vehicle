@@ -2,8 +2,11 @@ package br.com.demo.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,27 +26,31 @@ public class VehicleController {
     private @Autowired VehicleRepository vehicleRepository;
 
     @GetMapping("/getvehicles")
-    public List<Vehicle> getVehicles(){
-        return (List<Vehicle>) vehicleRepository.findAll();
+    public ResponseEntity<Set<Vehicle>> getVehicles(){
+        Set<Vehicle> get  = new TreeSet<>((List<Vehicle>) vehicleRepository.findAll());
+        return ResponseEntity.status(200).body(get);
     }
     @PostMapping("/postVehicle")
-    public void postVehicle(@RequestBody Vehicle vehicle){
+    public ResponseEntity<Vehicle> postVehicle(@RequestBody Vehicle vehicle){
         vehicleRepository.save(vehicle);
+        return ResponseEntity.status(201).body(null);
     }
 
     @GetMapping("/vehicle/{plate}")
-    public Optional<Vehicle> getVehicleByPlate(@PathVariable("plate") String plate){
-        return vehicleRepository.findById(plate);
+    public ResponseEntity<Optional<Vehicle>> getVehicleByPlate(@PathVariable("plate") String plate){
+        return ResponseEntity.status(200).body(vehicleRepository.findById(plate));
     }
 
     @PutMapping("/vehicle/atualizar")
-    public void putVehicle(@RequestBody Vehicle vehicle){
+    public ResponseEntity<Vehicle> putVehicle(@RequestBody Vehicle vehicle){
         vehicleRepository.save(vehicle);
+        return ResponseEntity.status(201).body(null);
     }
 
     @DeleteMapping("/deleteVehicle/{plate}")
-    public void deleteById(@PathVariable String plate){
+    public ResponseEntity<?> deleteById(@PathVariable String plate){
         vehicleRepository.deleteById(plate);
+        return ResponseEntity.status(204).build();
     }
 
 }
