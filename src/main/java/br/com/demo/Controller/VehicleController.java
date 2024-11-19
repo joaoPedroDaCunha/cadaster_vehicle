@@ -1,9 +1,7 @@
 package br.com.demo.Controller;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,39 +15,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.demo.Model.Vehicle;
-import br.com.demo.Repository.VehicleRepository;
+import br.com.demo.Service.VehicleService;
 
 @RestController
 @CrossOrigin("*")
 public class VehicleController {
 
-    private @Autowired VehicleRepository vehicleRepository;
+
+    private @Autowired VehicleService vehicleService;
 
     @GetMapping("/getvehicles")
     public ResponseEntity<Set<Vehicle>> getVehicles(){
-        Set<Vehicle> get  = new TreeSet<>((List<Vehicle>) vehicleRepository.findAll());
+        Set<Vehicle> get  = vehicleService.getAll();
         return ResponseEntity.status(200).body(get);
     }
     @PostMapping("/postVehicle")
     public ResponseEntity<Vehicle> postVehicle(@RequestBody Vehicle vehicle){
-        vehicleRepository.save(vehicle);
-        return ResponseEntity.status(201).body(null);
+        vehicleService.post(vehicle);
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping("/vehicle/{plate}")
     public ResponseEntity<Optional<Vehicle>> getVehicleByPlate(@PathVariable("plate") String plate){
-        return ResponseEntity.status(200).body(vehicleRepository.findById(plate));
+        return ResponseEntity.status(200).body(vehicleService.getVehicleByPlate(plate));
     }
 
     @PutMapping("/vehicle/atualizar")
     public ResponseEntity<Vehicle> putVehicle(@RequestBody Vehicle vehicle){
-        vehicleRepository.save(vehicle);
-        return ResponseEntity.status(201).body(null);
+        vehicleService.put(vehicle);
+        return ResponseEntity.status(201).build();
     }
 
     @DeleteMapping("/deleteVehicle/{plate}")
     public ResponseEntity<?> deleteById(@PathVariable String plate){
-        vehicleRepository.deleteById(plate);
+        vehicleService.deleteById(plate);
         return ResponseEntity.status(204).build();
     }
 
