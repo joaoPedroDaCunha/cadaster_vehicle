@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.demo.Model.Vehicle;
 import br.com.demo.Service.VehicleService;
+import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin("*")
@@ -30,7 +31,7 @@ public class VehicleController {
         return ResponseEntity.status(200).body(get);
     }
     @PostMapping("/postVehicle")
-    public ResponseEntity<Vehicle> postVehicle(@RequestBody Vehicle vehicle){
+    public ResponseEntity<Vehicle> postVehicle(@Valid @RequestBody Vehicle vehicle){
         vehicleService.post(vehicle);
         return ResponseEntity.status(201).build();
     }
@@ -41,7 +42,7 @@ public class VehicleController {
     }
 
     @PutMapping("/vehicle/atualizar")
-    public ResponseEntity<Vehicle> putVehicle(@RequestBody Vehicle vehicle){
+    public ResponseEntity<Vehicle> putVehicle(@Valid @RequestBody Vehicle vehicle){
         vehicleService.put(vehicle);
         return ResponseEntity.status(201).build();
     }

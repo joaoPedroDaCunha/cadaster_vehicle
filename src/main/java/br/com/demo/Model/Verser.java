@@ -7,13 +7,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Verser {
 
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
-    private @ManyToOne @JoinColumn(name = "aet_id") Aet aet;
-    private @OneToOne @JoinColumn(name = "plate_id") Vehicle vehicle;
+    private @NotBlank @ManyToOne @JoinColumn(name = "aet_id") Aet aet;
+    private @NotBlank @OneToOne @JoinColumn(name = "plate_id") Vehicle vehicle;
 
     public Verser() {
     }

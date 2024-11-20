@@ -5,20 +5,21 @@ import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Vehicle implements Comparable<Vehicle>{
 
-    private @Id @Column(name = "plate_id",length = 7,nullable = false) String plate;
-    private @Column(nullable = false,length = 20) String ranavam;
-    private @Column(length = 20,nullable = false) String chasis;
-    private @Column(length = 4,nullable = false) String exercice;
-    private @Column(length = 20,nullable = false) String mark;
-    private @Column(length = 20,nullable = false) String model;
-    private @Column(length = 20,nullable = false) String version;
-    private @Column(length = 20,nullable = false) String type;
-    private @Column Date dueDate;
-    private @Column(length = 20,nullable = false) String situation;
+    private @NotBlank @Id @Column(name = "plate_id",length = 7,nullable = false) String plate;
+    private @NotBlank @Column(nullable = false,length = 20) String ranavam;
+    private @NotBlank @Column(length = 20,nullable = false) String chasis;
+    private @NotBlank @Column(length = 4,nullable = false) String exercice;
+    private @NotBlank @Column(length = 20,nullable = false) String mark;
+    private @NotBlank @Column(length = 20,nullable = false) String model;
+    private @NotBlank @Column(length = 20,nullable = false) String version;
+    private @NotBlank @Column(length = 20,nullable = false) String type;
+    private @NotBlank @Column Date dueDate;
+    private @NotBlank @Column(length = 20,nullable = false) String situation;
 
     public Vehicle(){
         

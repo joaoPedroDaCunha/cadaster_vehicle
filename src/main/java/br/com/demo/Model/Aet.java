@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Aet implements Comparable<Aet> {
@@ -16,8 +17,8 @@ public class Aet implements Comparable<Aet> {
     private @Column(name = "aet_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
     @OneToOne
     @JoinColumn(name = "plate_id")
-    private Vehicle mainPlate;
-    private @Column Date maturity;
+    private @NotBlank Vehicle mainPlate;
+    private @NotBlank @Column Date maturity;
 
     public Aet(){
         
