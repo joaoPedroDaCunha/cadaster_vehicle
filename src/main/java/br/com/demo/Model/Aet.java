@@ -13,7 +13,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Aet implements Comparable<Aet> {
     
-    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
+    private @Column(name = "aet_id") @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
     @OneToOne
     @JoinColumn(name = "plate_id")
     private Vehicle mainPlate;
