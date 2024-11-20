@@ -1,11 +1,15 @@
 package br.com.demo.Model;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 public class Verser {
 
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
     private @ManyToOne @JoinColumn(name = "id") Aet aet;
     private @OneToOne @JoinColumn(name = "plate_id") Vehicle vehicle;
 
