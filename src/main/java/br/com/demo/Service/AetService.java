@@ -26,7 +26,7 @@ public class AetService {
         aetRepository.save(aet);
     }
 
-    public Optional<Aet> getAetByPlat(String plate){
+    public Optional<Aet> getAetByPlate(String plate){
         return aetRepository.findById(plate);
     }
 
