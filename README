@@ -1,0 +1,8 @@
+# CADASTER_VEHICLE
+### Objetivo do projeto
+Este projeto consiste em uma API desenvolvida com Spring Boot, com a finalidade de permitir o cadastro de veículos automotivos e fornecer informações detalhadas sobre esses veículos. A API foi projetada para atuar como um serviço backend, disponibilizando dados sobre os veículos de forma eficiente e estruturada, facilitando a integração com o frontend. O sistema visa proporcionar uma forma centralizada de registrar e consultar informações dos veículos, atendendo às necessidades de comunicação com interfaces de usuário, sistemas de gerenciamento ou outras aplicações que necessitem acessar essas informações.
+
+### Tecnologias utilizadas
+- Java
+- Maven
+- Spring Boot
